@@ -1,0 +1,15 @@
+# command to run ansible-playbook ports.yml -vvv
+# command to run ansible-playbook -i inventory.yml ports.yml --tags=port
+
+---
+- hosts: localhost
+  gather_facts: False
+  connection: network_cli
+
+  tasks:
+  - name: run ports script
+    ansible.builtin.script:
+      executable: python3
+      cmd: main.py
+    run_once: true
+    tags : port
